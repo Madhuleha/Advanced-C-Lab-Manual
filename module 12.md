@@ -15,11 +15,47 @@ Algorithm:
  
 Program:
 
-//type your code here
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node* next;
+};
+struct Node* head = NULL;
+void display() {
+    struct Node* p = head;
+    printf("Stack elements:\n");  
+    while (p != NULL) {
+        printf("%d -> ", p->data); 
+        p = p->next; 
+    }
+    printf("NULL\n");
+}
+void push(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+    newNode->data = value;
+    newNode->next = head;
+    head = newNode;
+}
+int main() {
+    push(10);
+    push(20);
+    push(30);
+    push(40);
+    display();
+    return 0;
+}
+
 
 Output:
 
-//paste your output here
+Stack elements:
+40 -> 30 -> 20 -> 10 -> NULL
+
 
 
 Result:
@@ -40,11 +76,62 @@ Algorithm:
  
 Program:
 
-//type your code here
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node* next;
+};
+struct Node* head = NULL;
+void push(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+    newNode->data = value;
+    newNode->next = head;
+    head = newNode;
+}
+void pop() {
+    if (head == NULL) { 
+        printf("Stack is empty. Nothing to pop.\n"); 
+        return;
+    }
+    struct Node* temp = head;
+    printf("Popped element: %d\n", head->data);
+    head = head->next;
+    free(temp);
+}
+void display() {
+    struct Node* p = head;
+    printf("Stack elements:\n");
+    while (p != NULL) {
+        printf("%d -> ", p->data);
+        p = p->next;
+    }
+    printf("NULL\n");
+}
+int main() {  
+    push(10);
+    push(20);
+    push(30);
+    display();
+    pop();
+    display();
+    return 0;
+}
+
 
 Output:
 
-//paste your output here
+Stack elements:
+30 -> 20 -> 10 -> NULL
+Popped element: 30
+Stack elements:
+20 -> 10 -> NULL
+
 
 
 
@@ -64,11 +151,59 @@ Algorithm:
  
 Program:
 
-//type your code here
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node* next;
+};
+struct Node* front = NULL;
+struct Node* rear = NULL;
+void enqueue(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+    newNode->data = value;
+    newNode->next = NULL;
+    if (rear == NULL) {
+        // If queue is empty
+        front = rear = newNode;
+    } else {
+        rear->next = newNode;
+        rear = newNode;
+    }
+}
+void display() {
+    if (front == NULL) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    struct Node* temp = front;
+    printf("Queue elements:\n");
+    while (temp != NULL) {
+        printf("%d -> ", temp->data); 
+        temp = temp->next;            
+    }
+    printf("NULL\n");
+}
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    display();
+    return 0;
+}
+
 
 Output:
 
-//paste your output here
+Queue elements:
+10 -> 20 -> 30 -> 40 -> NULL
+
 
 Result:
 Thus, the program to display queue elements using linked list is verified successfully.
@@ -90,11 +225,62 @@ Algorithm:
  
 Program:
 
-//type your code here
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node* next;
+};
+struct Node* front = NULL;
+struct Node* rear = NULL;
+void enqueue(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+    newNode->data = value;
+    newNode->next = NULL;
+    if (rear == NULL) {       
+        front = rear = newNode;
+    } else {
+        rear->next = newNode;
+        rear = newNode;
+    }
+    printf("Enqueued element: %d\n", value); 
+}
+void display() {
+    if (front == NULL) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    struct Node* temp = front;
+    printf("Queue elements: ");
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    display();
+    return 0;
+}
+
 
 Output:
 
-//paste your output here
+Enqueued element: 10
+Enqueued element: 20
+Enqueued element: 30
+Enqueued element: 40
+Queue elements: 10 -> 20 -> 30 -> 40 -> NULL
+
 
 Result:
 Thus, the program to insert elements in queue using linked list is verified successfully.
@@ -117,11 +303,74 @@ o	If the queue is not empty, return the data stored in the front node of the lin
 
 Program:
 
-//type your code here
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node* next;
+};
+struct Node* front = NULL;
+struct Node* rear = NULL;
+void enqueue(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (!newNode) {
+        printf("Memory allocation failed\n");
+        return;
+    }
+    newNode->data = value;
+    newNode->next = NULL;
+    if (rear == NULL) {
+        front = rear = newNode;  
+    } else {
+        rear->next = newNode;  
+        rear = newNode;       
+    }
+    printf("Enqueued element: %d\n", value); 
+}
+int peek() {    
+    if (front == NULL) {
+        printf("Queue is empty.\n");
+        return -1;  
+    }
+    return front->data;
+}
+void display() {
+    if (front == NULL) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    struct Node* temp = front;
+    printf("Queue elements: ");
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+int main() {
+    enqueue(10);
+    enqueue(20);
+    enqueue(30);
+    enqueue(40);
+    display();
+    int frontElement = peek();
+    if (frontElement != -1) {
+        printf("Front element (peek): %d\n", frontElement);
+    }
+    return 0;
+}
+
 
 Output:
 
-//paste your output here
+Enqueued element: 10
+Enqueued element: 20
+Enqueued element: 30
+Enqueued element: 40
+Queue elements: 10 -> 20 -> 30 -> 40 -> NULL
+Front element (peek): 10
+
 
 
 
