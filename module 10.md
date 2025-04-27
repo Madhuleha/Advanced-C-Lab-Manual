@@ -10,11 +10,52 @@ Algorithm:
  
 Program:
 
-//type your code here
+struct Node{
+    float data; 
+    struct Node *next;
+};
+struct Node*head;
+void search(float data)
+{
+    struct Node*temp;
+    int i=0,flag=0;
+    temp=head;
+    if(temp==NULL)
+    {
+        printf("Empty list\n");
+    }
+    else
+    {
+        while(temp!=NULL)
+        {
+            i++;
+            if(temp->data==data)
+            {
+                flag=1;
+                break;
+            }
+            temp=temp->next;
+        }
+        if(flag==1)
+        {
+            printf("item %.2f found at location %d\n",data,i);
+        }
+        else
+        {
+            printf("Item not found\n");
+        }
+    }
+}
 
 Output:
 
-//paste your output here
+head = NULL;
+insert(10.55);
+insert(20.55);
+insert(30.55);
+search(30.55);
+
+item 30.55 found at location 3
 
 
 
@@ -34,11 +75,39 @@ Algorithm:
  
 Program:
 
-//type your code here
+struct Node 
+{
+    char data;
+    struct Node *next;
+};
+struct Node *head;
+void insert(char data)
+{
+    struct Node *temp,*nextnode;
+    nextnode=(struct Node *)malloc(sizeof(struct Node));
+    temp=head;
+    nextnode->data=data;
+    nextnode->next=0;
+    if(temp==0)
+    {
+        head=nextnode;
+        return;
+    }
+    else
+    {
+        while(temp->next!=0)
+        {
+            temp=temp->next;
+        }
+        temp->next=nextnode;
+    }
+}
 
 Output:
 
-//paste your output here
+a
+b
+c
 
  
 Result:
@@ -58,12 +127,28 @@ Algorithm:
  
 Program:
 
-//type your code here
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    int data;
+}*head;
+
+void display()
+{
+    struct Node *temp=head;
+    while(temp!=0)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }    
+    
+}
+
 
 Output:
 
-//paste your output here
-
+10 20 30
 
 Result:
 Thus, the program to traverse a doubly linked list is verified successfully. 
@@ -83,11 +168,52 @@ Algorithm:
  
 Program:
 
-//type your code here
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    int data;
+}*head;
+
+void insert(int data)
+{
+    struct Node *abc,*temp;
+    abc = (struct Node*)malloc(sizeof(struct Node*));
+    if(abc==NULL)
+    {
+        printf("OVERFLOW\n");
+    }
+    else
+    {
+        abc->data = data;
+        if(head==NULL)
+        {
+            abc->next = NULL;
+            abc->prev = NULL;
+            head = abc;
+        }
+        else
+        {
+            temp=head;
+            while(temp->next != NULL)
+            {
+                temp= temp->next;
+                
+            }
+            temp->next = abc;
+            abc->prev = temp;
+            abc->next = NULL;
+            
+        }
+    }
+}
 
 Output:
 
-//paste your output here
+
+10
+20
+30
 
 
 Result:
@@ -125,12 +251,32 @@ o	If the element is not found in any node, print a message indicating the elemen
 
 Program:
 
-//type your code here
+struct Node
+{
+    char data; 
+    struct Node *next;
+}*head;
+void delete()
+{
+    struct Node *ptr;
+    if(head == NULL)
+    {
+        printf("List is empty\n");
+    }
+    else
+    {
+        ptr = head;
+        head = ptr->next;
+        free(ptr);
+        printf("Node deleted from the begining ...\n");
+    }
+}
+
 
 Output:
 
-//paste your output here
-
+a b c Node deleted from the begining ...
+b c
 
 
 
