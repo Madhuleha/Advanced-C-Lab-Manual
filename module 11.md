@@ -12,10 +12,32 @@ Algorithm:
 5.	Call the max_of_four function with the input integers and store the result in the greater variable
  
 Program:
-//type your code here
+#include <stdio.h>
+int max_of_four(int a, int b, int c, int d) {
+    if (a >= b && a >= c && a >= d)
+        return a;
+    else if (b >= a && b >= c && b >= d)
+        return b;
+    else if (c >= a && c >= b && c >= d)
+        return c;
+    else
+        return d;
+}
+int main() {
+    int n1, n2, n3, n4, greater;
+    printf("Enter four integers:\n");
+    scanf("%d %d %d %d", &n1, &n2, &n3, &n4);
+    greater = max_of_four(n1, n2, n3, n4);
+    printf("The greatest number is: %d\n", greater);
+    return 0;
+}
+
 
 Output:
-//paste your output here
+Enter four integers:
+23 14 78 12
+The greatest number is: 78
+
 
 Result:
 Thus, the program  that create a function to find the greatest number is verified successfully.
@@ -36,10 +58,42 @@ Algorithm:
 7.	Call the calculate_the_max function with input values.
  
 Program:
-//type your code here
+
+#include<stdio.h>
+int main(){
+int a,b;
+scanf("%d%d",&a,&b);
+int and=0,or=0,xor=0;
+for(int i=1;i<=a;i++){
+for(int j=i+1;j<=a;j++){
+if((i&j)>and && (i&j)<b)
+{
+and=i&j;
+}
+if((i|j)> or && (i|j)<b)
+{
+or=i|j;
+}
+if((i^j)> xor && (i^j)<b)
+{
+xor=i^j;
+}
+}
+}
+printf("AND :%d\n",and);
+printf("OR  :%d\n",or);
+printf("XOR :%d\n",xor);
+}
+
+
 
 Output:
-//paste your output here
+ 5 4
+ 
+AND :2
+OR  :3
+XOR :3
+
 
 Result:
 Thus, the program to print the maximum values for the AND, OR and XOR comparisons
@@ -59,10 +113,73 @@ Algorithm:
 5.	Use a for loop to iterate over the queries.
  
 Program:
-//type your code here
+#include<stdio.h>
+#include<stdlib.h>
+int* total_books;
+int** total_pages;
+int main(){
+    int total_shelves;
+    scanf("%d",&total_shelves);
+    
+    total_books=calloc(total_shelves,sizeof(int));
+    int total_queries;
+    scanf("%d",&total_queries); 
+     total_pages=malloc(total_shelves*sizeof(int*));
+     for(int i=0;i<total_shelves;i++){
+         total_pages[i]=calloc(1100,sizeof(int));
+     }
+     while(total_queries--)
+     {
+         int type_query;
+         scanf("%d",&type_query);
+         if(type_query==1)
+         {
+             int shelf,pages;
+             scanf("%d %d ",&shelf,&pages);
+             total_books[shelf]++;
+             int *book=total_pages[shelf];
+             while(*book!=0)
+             book++;
+             *book=pages;
+         }
+         else if(type_query==2){
+             int x,y;
+             scanf("%d %d",&x,&y);
+             printf("%d\n",*(*(total_pages+x)+y));
+         }
+         else
+         {
+             int x;
+             scanf("%d",&x);
+             printf("%d\n",*(total_books+x)); 
+             
+         }
+     }
+     if(total_books)
+     {
+         free(total_books);
+     }
+       for(int i=0;i<total_shelves;i++) 
+       {
+           if(*(total_pages+i))
+           {
+               free(*(total_pages+i));
+           }
+       }
+       if(total_pages)
+       {
+           free(total_pages);
+         
+       }
+       return 0;
+     
+    
+}
+
 
 Output:
-//paste your output here
+78
+2
 
 
 Result:
@@ -86,10 +203,29 @@ Algorithm:
 
 
 Program:
-//type your code here
+#include <stdio.h>
+int main() {
+    int n; 
+    printf("Enter the number of integers: ");
+    scanf("%d", &n); 
+    int a[n]; 
+    int sum = 0; 
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) { 
+        scanf("%d", &a[i]); 
+        sum += a[i];        
+    }
+    printf("Sum of the integers is: %d\n", sum);
+    return 0;
+}
+
 
 Output:
-//paste your output here
+Enter the number of integers: 3
+Enter 3 integers:
+10 20 30
+Sum of the integers is: 60
+
 
  
 
@@ -120,10 +256,33 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 
 
 Program:
-//type your code here
+#include <stdio.h>
+int main() { // Step 1: Input the sentence
+    int i = 0, words = 0;
+    int inWord = 0; 
+    printf("Enter a sentence:\n");
+    fgets(sentence, sizeof(sentence), stdin); 
+    while (sentence[i] != '\0') {
+        if (sentence[i] != ' ' && sentence[i] != '\n' && sentence[i] != '\t') {
+            if (inWord == 0) {
+                words++; // Start of a new word
+                inWord = 1;
+            }
+        } else {
+            inWord = 0; 
+        }
+        i++;
+    }
+    printf("Total number of words: %d\n", words);
+    return 0;
+}
+
 
 Output:
-//paste your output here
+Enter a sentence:
+Hello world! This is C programming.
+Total number of words: 6
+
 
 
 
